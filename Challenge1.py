@@ -15,6 +15,7 @@ class GeoAPI:
             currentTemp = temp["temp"]
             currentTemp = str(currentTemp)[0:2]
             return(int(currentTemp))
+            
 # a=GeoAPI()
 # print(a.is_hot_in_pehuajo())
 
@@ -43,13 +44,19 @@ def validate_discount_code(discount_code):
         return True
     else:
         for code in AVAILABLE_DISCOUNT_CODES:
-            for x in code:
-                for y in range(x):
-                    print (x)
-                    print (y)
 
+            c=-1
+            err=0
+            for x in discount_code:
+                c=c+1
+                y = code[c]
+                if x != y:
+                    err=err+1
+            if err < 3:
+                return True
+    return False
 
-validate_discount_code("primavera2021")
+print(validate_discount_code("verano2021"))
 
 # Ejemplo:"primavera2021" deberia devolver True, ya que al compararlo:
 # vs "Primavera2021" = 2 caracteres de diferencia ("p" y "P") 
