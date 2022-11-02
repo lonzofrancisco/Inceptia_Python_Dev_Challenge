@@ -58,3 +58,43 @@ def validate_discount_code(discount_code):
 
 
 
+#---------------------------------------------------------------------
+#--------------------Aqui comienza el flujo---------------------------
+from Challenge import GeoAPI, is_product_available, validate_discount_code
+a=GeoAPI()
+
+
+
+if a.is_hot_in_pehuajo() > 28:
+    print("Bienvenida 1")
+else:
+    print("Bienvenida 2")
+
+pedido = []
+print("x para salir")
+producto = input("Ingrese el producto: ")
+cantidad = int(input("Ingrese la cantidad: "))        
+while True:
+    if producto == "x":
+        break
+    if is_product_available(producto, cantidad):
+        pedido.append([producto,cantidad])
+        producto = input("Ingrese el producto: ")
+        if producto == "x":
+            break
+        cantidad = int(input("Ingrese la cantidad: "))
+    else:
+        producto = input("Ingrese el producto: ")
+        if producto == "x":
+            break
+        cantidad = int(input("Ingrese la cantidad: "))
+
+print("Su pedido: ", pedido)
+
+cod = input("Inserte un codigo de descuento: ")
+while True:
+    if not validate_discount_code(cod):
+        cod = input("Codigo Invalido n\ Inserte otro codigo de descuento: ")
+    else:
+        print("Pedido confirmado")
+        break
