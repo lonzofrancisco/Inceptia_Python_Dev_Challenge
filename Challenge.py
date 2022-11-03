@@ -60,7 +60,6 @@ def validate_discount_code(discount_code):
 
 #---------------------------------------------------------------------
 #--------------------Aqui comienza el flujo---------------------------
-from Challenge import GeoAPI, is_product_available, validate_discount_code
 a=GeoAPI()
 
 
